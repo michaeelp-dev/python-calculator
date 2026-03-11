@@ -1,20 +1,48 @@
 import operations
 
-numberA = float(input("Enter the first number: "))
-numberB = float(input("Enter the second number: "))
+def askInput():
+    try:
+        return float(input("Enter a number: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        return askInput()
 
+newNumber = askInput()
 
-operation = input("Enter the operation: ")
+while True:
+    operation = input("Enter operation (+ - * /), 'exit' or 'clear': ")
 
-match operation:
-    case "+":
-        result = operations.add(numberA, numberB)
-    case "-":
-        result = operations.subtract(numberA, numberB)
-    case "*":
-        result = operations.multiply(numberA, numberB)
-    case "/":
-        result = operations.divide(numberA, numberB)
-    case "**":
-        result = operations.power(numberA, numberB)
-print(f"The result is: {result}")
+    if operation == "exit":
+        print("Exiting calculator.")
+        break
+
+    elif operation == "clear":
+        newNumber = askInput()
+        print("Calculator reset.")
+
+    elif operation in ['+', '-', '*', '/']:
+        try:
+            nextNumber = float(input("Enter another number: "))
+
+            if operation == '+':
+                newNumber = operations.add(newNumber, nextNumber)
+
+            elif operation == '-':
+                newNumber = operations.subtract(newNumber, nextNumber)
+
+            elif operation == '*':
+                newNumber = operations.multiply(newNumber, nextNumber)
+
+            elif operation == '/':
+                newNumber = operations.divide(newNumber, nextNumber)
+
+            print("Result:", newNumber)
+
+        except ValueError:
+            print("Invalid number.")
+
+        except ZeroDivisionError:
+            print("Cannot divide by zero.")
+
+    else:
+        print("Invalid operation.")

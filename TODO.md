@@ -4,10 +4,10 @@
 - [x] create project structure
 - [x] basic calculator in console
 - [x] create operations.py functions
-- [ ] allow multiple calculations
-- [ ] handle invalid input
+- [x] allow multiple calculations
+- [x] handle invalid input
 - [x] prevent division by zero
-- [ ] make reset function
+- [x] make reset function
 
 ---
 
